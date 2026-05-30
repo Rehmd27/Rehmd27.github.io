@@ -138,13 +138,14 @@ ul.clean li::before{content:"▸"; color:var(--amber); position:absolute; left:0
 <section class="page" id="sip">
   <div class="pagehead"><div class="wrap"><h1>SIP Project: T.A.Q.</h1><p>Technical, Analytical, Quantitative — an AI-assisted trading journal analyzer.</p></div></div>
   <div class="section"><div class="wrap stack">
-    <div class="block"><h2>Project Description</h2><p>T.A.Q. is an AI-assisted trading journal analyzer that turns a trader's raw trade history into a clear quantitative performance breakdown and a plain-language review of where their edge is — and where it leaks. It computes the metrics that actually matter and uses an AI layer to explain them like a coach, while keeping every byte of the user's data private on their own device.</p></div>
-    <div class="block"><h2>Problem Statement</h2><p>Most traders record every trade but analyze none of them. Spreadsheets are intimidating, and the few analytics tools that exist hand back raw numbers without explaining what they mean. As a result, traders rely on memory and gut feel instead of the one dataset that actually reflects their edge: their own results.</p></div>
+    <div class="block"><h2>Project Description</h2><p>This project will create a website that allows users to share their trading journal into a website that will conduct a quantitative analyses and return an output file that will highlight patterns, data and other behaviors uncovered by observing the trading journal.
+</p></div>
+    <div class="block"><h2>Problem Statement</h2><p>Trading platforms offer surface level analytics for retail traders. While this information serves casual users, it leaves serious traders without the depth needed to actually improve. As a result, traders are left trying to identify behavioral patterns and recurring mistakes that leave Traders questioning the viability of their abilities and strategies.  TAQ will address this by applying data analytics and machine learning to the data traders already generate to identify blind spots and statistical weaknesses that often get overlooked. This will give retail traders an institutional level assessment.
+</p></div>
     <div class="block"><h2>Project Scope</h2><ul class="clean">
       <li>Journal upload and parsing from any trading platform</li>
       <li>Automated performance metrics — profit factor, expectancy, drawdown, payoff ratio, streaks, risk-adjusted return</li>
       <li>AI-generated written performance review</li>
-      <li>An edge verdict: confirmed, marginal, or unproven</li>
     </ul></div>
     <div class="block"><h2>Target Market</h2><ul class="clean">
       <li>Retail traders</li>
@@ -157,14 +158,7 @@ ul.clean li::before{content:"▸"; color:var(--amber); position:absolute; left:0
 </p></div></div>
     <div class="block"><h2>Prototype / Proof of Concept</h2>
       <p>The prototype lets a trader upload a CSV, computes the full metric suite, renders an equity curve, and returns a written AI assessment with an edge verdict. It is currently in development; the planned build phases are below.</p>
-      <div class="roadmap">
-        <div class="phase"><span class="n">Phase 1</span><h4>Metrics engine</h4><p>CSV parsing, column mapping, and the full statistics layer.</p></div>
-        <div class="phase"><span class="n">Phase 2</span><h4>Visualization</h4><p>Equity curve and at-a-glance metrics dashboard.</p></div>
-        <div class="phase"><span class="n">Phase 3</span><h4>AI reviewer</h4><p>An AI layer that reads the metrics and writes the assessment.</p></div>
-        <div class="phase"><span class="n">Phase 4</span><h4>Deploy</h4><p>Serverless function to keep API keys server-side; ship it live.</p></div>
-      </div></div>
     <div class="block"><h2>Source Code</h2><p>All T.A.Q. code is open and versioned on GitHub.</p>
-      <a class="btn btn-ghost" href="https://github.com/Rehmd27" target="_blank" rel="noopener">View on GitHub <span class="edit">edit link</span></a></div>
   </div></div>
 </section>
 
