@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>David — T.A.Q. SIP Portfolio</title>
+<style>
+:root{
+  --bg:#000; --panel:#0a0a0a; --panel-2:#121212;
+  --line:#1f1f1f; --line-2:#2a2a2a;
+  --ink:#e8e8e8; --ink-2:#a8a8a8; --muted:#6e6e6e;
+  --amber:#ffb000; --amber-dim:#cf8900;
+  --cyan:#22d3ee; --green:#16d97b; --red:#ff4d4d;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0; background:var(--bg); color:var(--ink); font:14px/1.6 "IBM Plex Mono","SFMono-Regular",Consolas,monospace}
+h1,h2,h3,h4{color:#fff; margin:0 0 .5em; font-family:"IBM Plex Mono",monospace; font-weight:600; letter-spacing:-.01em; line-height:1.2}
+h1{font-size:2.4rem} h2{font-size:1.45rem} h3{font-size:1rem; letter-spacing:.04em; text-transform:uppercase}
+p{margin:0 0 1rem; color:var(--ink-2)}
+a{color:var(--amber); text-decoration:none}
+a:hover{color:#fff}
+.wrap{max-width:1180px; margin:0 auto; padding:0 22px}
+
+/* Header */
+.site-header{background:var(--bg); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:50}
+.site-header .wrap{display:flex; align-items:center; justify-content:space-between; height:56px}
+.brand{color:#fff; font-weight:700; font-size:.95rem; letter-spacing:.08em; text-transform:uppercase}
+.brand::before{content:"▎"; color:var(--amber); margin-right:6px}
+.nav{display:flex; gap:0; flex-wrap:wrap}
+.nav a{color:var(--ink-2); font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; padding:8px 14px; border-left:1px solid var(--line)}
+.nav a:hover{color:var(--amber); background:var(--panel)}
+.nav a:last-child{border-right:1px solid var(--line)}
+
+/* Routing */
+main{display:flex; flex-direction:column}
+.page{display:none; scroll-margin-top:80px}
+.page:target{display:block}
+#home{display:block; order:-1}
+#sip:target~#home,#boards:target~#home,#projects:target~#home,#contact:target~#home{display:none}
+
+/* Page banner */
+.pagehead{background:var(--panel); border-bottom:1px solid var(--line)}
+.pagehead .wrap{padding:36px 22px}
+.pagehead h1{color:#fff; font-size:1.7rem; margin-bottom:4px}
+.pagehead h1::before{content:"// "; color:var(--amber)}
+.pagehead p{color:var(--ink-2); margin:0; font-size:.92rem}
+
+/* Hero */
+.hero{padding:54px 0 40px; border-bottom:1px solid var(--line); background:radial-gradient(900px 360px at 20% 20%, rgba(255,176,0,.07), transparent 70%)}
+.eyebrow{color:var(--amber); font-size:.7rem; letter-spacing:.22em; text-transform:uppercase; margin-bottom:14px}
+.hero h1{color:#fff; font-size:2.6rem; max-width:18ch; margin-bottom:18px}
+.hero h1 .acc{color:var(--amber)}
+.hero p.lede{color:var(--ink-2); max-width:62ch; font-size:1.02rem; margin-bottom:22px}
+.hero-cta{display:flex; gap:10px; flex-wrap:wrap}
+.btn{display:inline-flex; align-items:center; gap:8px; padding:11px 18px; font:600 .78rem/1 "IBM Plex Mono",monospace; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; border-radius:0; transition:.15s}
+.btn-primary{background:var(--amber); color:#000}
+.btn-primary:hover{background:#fff}
+.btn-outline{border:1px solid var(--line-2); color:var(--ink)}
+.btn-outline:hover{border-color:var(--amber); color:var(--amber)}
+.btn-ghost{border:1px solid var(--line-2); color:var(--ink); padding:9px 14px}
+.btn-ghost:hover{border-color:var(--amber); color:var(--amber)}
+
+/* Sections */
+.section{padding:54px 0; border-bottom:1px solid var(--line)}
+.section h2{margin-bottom:6px}
+.section h2::before{content:"› "; color:var(--amber)}
+.lead{color:var(--ink-2); max-width:62ch}
+.stack > *+*{margin-top:32px}
+.block h2{margin-bottom:10px}
+.block p{color:var(--ink-2)}
+ul.clean{margin:6px 0 0; padding-left:0; list-style:none}
+ul.clean li{margin:5px 0; padding-left:18px; position:relative; color:var(--ink-2)}
+ul.clean li::before{content:"▸"; color:var(--amber); position:absolute; left:0; top:0}
+
+/* Claim */
+.claim{background:var(--panel); border:1px solid var(--line-2); border-left:3px solid var(--amber); padding:20px 22px}
+.claim .lbl{color:var(--amber); font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; display:block; margin-bottom:8px}
+.claim p{color:#fff; margin:0; font-size:.98rem}
+
+/* Cards / grid */
+.grid{display:grid; gap:16px}
+.grid-2{grid-template-columns:repeat(2,1fr)} .grid-3{grid-template-columns:repeat(3,1fr)}
+.card{background:var(--panel); border:1px solid var(--line-2); padding:20px; transition:.18s}
+.card:hover{border-color:var(--amber)}
+.card .kind{color:var(--cyan); font-size:.7rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; display:block; margin-bottom:8px}
+.card h3{margin:0 0 8px; font-size:.95rem; color:#fff}
+.card p{font-size:.86rem; margin:0 0 12px; color:var(--ink-2)}
+.tags{display:flex; flex-wrap:wrap; gap:5px}
+.tag{background:var(--bg); border:1px solid var(--line); color:var(--ink-2); font-size:.66rem; letter-spacing:.06em; padding:3px 7px; font-weight:500}
+
+/* roadmap */
+.roadmap{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:8px}
+.phase{background:var(--panel); border:1px solid var(--line-2); padding:16px; position:relative}
+.phase .n{color:var(--amber); font-size:.68rem; letter-spacing:.18em; text-transform:uppercase; font-weight:700}
+.phase h4{margin:6px 0; color:#fff; font-size:.88rem; text-transform:none; letter-spacing:0}
+.phase p{font-size:.78rem; color:var(--ink-2); margin:0}
+
+/* boards */
+.obj{counter-reset:o; list-style:none; padding:0; margin:14px 0 0}
+.obj li{position:relative; padding:13px 0 13px 52px; border-bottom:1px solid var(--line); color:var(--ink-2); font-size:.92rem}
+.obj li:last-child{border-bottom:0}
+.obj li::before{counter-increment:o; content:"OBJ-"counter(o,decimal-leading-zero); position:absolute; left:0; top:14px; color:var(--amber); font-size:.7rem; letter-spacing:.08em; font-weight:700}
+
+/* contact */
+.contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px}
+.info p{margin:0 0 14px}
+.info .k{display:block; font-size:.65rem; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); font-weight:700; margin-bottom:3px}
+.info .v{color:#fff; font-size:.95rem}
+.socials{display:flex; gap:8px; margin-top:6px}
+.socials a{border:1px solid var(--line-2); padding:7px 12px; color:var(--ink); font-size:.75rem; letter-spacing:.1em; text-transform:uppercase}
+.socials a:hover{border-color:var(--amber); color:var(--amber)}
+.note{background:var(--panel); border:1px solid var(--line-2); padding:18px 20px}
+.note .lbl{color:var(--amber); font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; display:block; margin-bottom:8px; font-weight:700}
+.note p{margin:0; font-size:.88rem; color:var(--ink-2)}
+
+.edit{display:inline-block; font-size:.6rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#000; background:var(--amber); padding:1px 7px; vertical-align:middle}
+
+.site-footer{background:var(--bg); border-top:1px solid var(--line); color:var(--muted); text-align:center; padding:18px; font-size:.74rem; letter-spacing:.14em; text-transform:uppercase}
+
+@media (max-width:820px){
+  h1{font-size:1.7rem}
+  .grid-2,.grid-3,.roadmap,.contact-grid{grid-template-columns:1fr}
+  .site-header .wrap{height:auto; flex-wrap:wrap; gap:6px; padding:8px 22px}
+  .nav{width:100%}
+  .nav a{padding:6px 10px; font-size:.7rem}
+}
+</style></head>
+<body>
+<header class="site-header"><div class="wrap">
+  <a href="#home" class="brand">David <span class="edit">edit: surname</span></a>
+  <nav class="nav">
+    <a href="#home">Home</a><a href="#sip">SIP</a><a href="#boards">Boards</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+  </nav>
+</div></header>
+
+<main>
+
+<!-- SIP -->
+<section class="page" id="sip">
+  <div class="pagehead"><div class="wrap"><h1>SIP Project: T.A.Q.</h1><p>Technical, Analytical, Quantitative — an AI-assisted trading journal analyzer.</p></div></div>
+  <div class="section"><div class="wrap stack">
+    <div class="block"><h2>Project Description</h2><p>T.A.Q. is an AI-assisted trading journal analyzer that turns a trader's raw trade history into a clear quantitative performance breakdown and a plain-language review of where their edge is — and where it leaks. It computes the metrics that actually matter and uses an AI layer to explain them like a coach, while keeping every byte of the user's data private on their own device.</p></div>
+    <div class="block"><h2>Problem Statement</h2><p>Most traders record every trade but analyze none of them. Spreadsheets are intimidating, and the few analytics tools that exist hand back raw numbers without explaining what they mean. As a result, traders rely on memory and gut feel instead of the one dataset that actually reflects their edge: their own results.</p></div>
+    <div class="block"><h2>Project Scope</h2><ul class="clean">
+      <li>CSV journal upload and parsing from any trading platform</li>
+      <li>Automated performance metrics — profit factor, expectancy, drawdown, payoff ratio, streaks, risk-adjusted return</li>
+      <li>Cumulative equity-curve visualization</li>
+      <li>AI-generated written performance review</li>
+      <li>An edge verdict: confirmed, marginal, or unproven</li>
+      <li>100% client-side privacy — journal data never leaves the user's device</li>
+    </ul></div>
+    <div class="block"><h2>Target Market</h2><ul class="clean">
+      <li>Retail discretionary traders</li>
+      <li>Algorithmic and systematic traders</li>
+      <li>Proprietary trading firm traders and evaluation candidates</li>
+      <li>Trading educators and mentors</li>
+      <li>Anyone keeping a manual trade journal</li>
+    </ul></div>
+    <div class="block"><h2>Innovation Claim</h2><div class="claim"><span class="lbl">Innovation Claim</span><p>T.A.Q. is the first tool to pair full automated trade-performance analytics with an AI reviewer that reads a trader's own results and explains them like a coach — bridging the gap between raw statistics calculators and generic trading advice, while keeping every byte of the user's data private on their own device.</p></div></div>
+    <div class="block"><h2>Prototype / Proof of Concept</h2>
+      <p>The prototype lets a trader upload a CSV, computes the full metric suite, renders an equity curve, and returns a written AI assessment with an edge verdict. It is currently in development; the planned build phases are below.</p>
+      <div class="roadmap">
+        <div class="phase"><span class="n">Phase 1</span><h4>Metrics engine</h4><p>CSV parsing, column mapping, and the full statistics layer.</p></div>
+        <div class="phase"><span class="n">Phase 2</span><h4>Visualization</h4><p>Equity curve and at-a-glance metrics dashboard.</p></div>
+        <div class="phase"><span class="n">Phase 3</span><h4>AI reviewer</h4><p>An AI layer that reads the metrics and writes the assessment.</p></div>
+        <div class="phase"><span class="n">Phase 4</span><h4>Deploy</h4><p>Serverless function to keep API keys server-side; ship it live.</p></div>
+      </div></div>
+    <div class="block"><h2>Source Code</h2><p>All T.A.Q. code is open and versioned on GitHub.</p>
+      <a class="btn btn-ghost" href="https://github.com/Rehmd27" target="_blank" rel="noopener">View on GitHub <span class="edit">edit link</span></a></div>
+  </div></div>
+</section>
+
+<!-- BOARDS -->
+<section class="page" id="boards">
+  <div class="pagehead"><div class="wrap"><h1>Boards Objectives</h1><p>University of Advancing Technology — major objectives.</p></div></div>
+  <div class="section"><div class="wrap stack">
+    <div class="block"><h2>Artificial Intelligence Degree Objectives</h2>
+      <ol class="obj">
+        <li>Create and integrate cognitive artificial intelligence into applications.</li>
+        <li>Create and evolve natural language processing systems.</li>
+        <li>Demonstrate proficiency in designing and developing machine learning systems using industry approaches and patterns.</li>
+        <li>Design and employ deep learning systems using best practices and conventions.</li>
+        <li>Demonstrate a deep understanding of neural networks and their role in creating intelligent systems.</li>
+        <li>Design, create, or integrate reinforcement learning, large language models, and genetic algorithms in intelligent software.</li>
+      </ol></div>
+    <div class="block"><h2>How T.A.Q. Connects to My Objectives</h2><p>T.A.Q. brings these objectives together in one project: it integrates an AI reviewer into a working application, uses natural language processing to generate written trade feedback, applies machine-learning methods to interpret performance data, and incorporates a large language model to turn raw metrics into coaching a trader can actually use.</p></div>
+  </div></div>
+</section>
+
+<!-- PROJECTS -->
+<section class="page" id="projects">
+  <div class="pagehead"><div class="wrap"><h1>Projects</h1><p>Selected work in AI and quantitative trading.</p></div></div>
+  <div class="section"><div class="wrap">
+    <p class="lead" style="margin-bottom:24px">A mix of trading systems, machine-learning projects, and signal-processing tools that reflect my major and my work as an algorithmic trader. <span class="edit">swap in your real repo links</span></p>
+    <div class="grid grid-2">
+      <div class="card"><span class="kind">cTrader · C#</span><h3>HMM Flag Detection System</h3><p>A nine-state Hidden Markov Model that classifies pole, flag, breakout, and failure regimes, paired with a cBot that filters entries through a Kaufman Efficiency Ratio regime gate.</p><div class="tags"><span class="tag">HMM</span><span class="tag">Regime detection</span><span class="tag">cAlgo</span></div></div>
+      <div class="card"><span class="kind">cTrader · C#</span><h3>Ehlers DSP Regime Bot</h3><p>Digital-signal-processing regime detection using a Roofing Filter, Hilbert Transform, and Super Smoother, switching between mean-reversion and momentum logic based on measured market state.</p><div class="tags"><span class="tag">DSP</span><span class="tag">Hilbert Transform</span><span class="tag">Adaptive</span></div></div>
+      <div class="card"><span class="kind">Python · CSC373</span><h3>Loan Approval ML Classifier</h3><p>An end-to-end machine-learning pipeline that predicts loan approvals with a decision-tree classifier, label-encoded features, and a Tkinter desktop interface for live predictions.</p><div class="tags"><span class="tag">scikit-learn</span><span class="tag">Decision Tree</span><span class="tag">Tkinter</span></div></div>
+      <div class="card"><span class="kind">cTrader · C#</span><h3>Keltner + Gaussian Breakout Bot</h3><p>A volatility-breakout strategy combining Keltner Channels with a Gaussian z-score filter, tuned for NAS100, US500, and JPN225 on M5 with dual London / New York session windows.</p><div class="tags"><span class="tag">Breakout</span><span class="tag">Z-score</span><span class="tag">Session filter</span></div></div>
+      <div class="card"><span class="kind">C# · CSC262</span><h3>Banking Application</h3><p>A Windows Forms banking app built on SQL Server LocalDB, demonstrating OOP inheritance and encapsulation, with a custom decision tree trained from CSV data driving in-app logic.</p><div class="tags"><span class="tag">WinForms</span><span class="tag">SQL Server</span><span class="tag">OOP</span></div></div>
+      <div class="card"><span class="kind">C# · JS</span><h3>K-Means++ TP Clustering</h3><p>An indicator that clusters historical price action with K-Means++ to surface high-probability take-profit zones, ported to both cTrader (C#) and Tradovate (JavaScript).</p><div class="tags"><span class="tag">K-Means++</span><span class="tag">Clustering</span><span class="tag">Cross-platform</span></div></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- CONTACT -->
+<section class="page" id="contact">
+  <div class="pagehead"><div class="wrap"><h1>Contact</h1><p>Questions about the SIP, collaboration, or anything quant &amp; AI.</p></div></div>
+  <div class="section"><div class="wrap stack">
+    <div class="contact-grid">
+      <div class="info">
+        <p><span class="k">Email</span><span class="v"><a href="mailto:your.name@email.com">your.name@email.com</a> <span class="edit">edit</span></span></p>
+        <p><span class="k">Location</span><span class="v">Nürnberg, Germany</span></p>
+        <p><span class="k">Program</span><span class="v">UAT — Artificial Intelligence (BS)</span></p>
+        <div class="socials">
+          <a href="https://github.com/Rehmd27" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://linkedin.com/in/your-handle" target="_blank" rel="noopener">LinkedIn <span class="edit">edit</span></a>
+        </div>
+      </div>
+      <div class="card"><h3>Send an inquiry</h3><p>The quickest way to reach me is email — click below and your mail app opens with my address ready.</p>
+        <a class="btn btn-primary" href="mailto:your.name@email.com?subject=TAQ%20SIP%20inquiry">Email me</a></div>
+    </div>
+    <div class="note"><span class="lbl">Feedback I'd like from classmates</span><p>I'd value your eyes on three things: (1) Is the SIP page clear — can you tell what T.A.Q. does and why it's novel within 30 seconds? (2) Does the build roadmap read as realistic and well-scoped? (3) Does the overall site read as professional for a quant/AI portfolio?</p></div>
+  </div></div>
+</section>
+
+<!-- HOME -->
+<section class="page" id="home">
+  <div class="hero"><div class="wrap">
+    <p class="eyebrow">// SIP &amp; Boards Portfolio</p>
+    <h1>Building an <span class="acc">analytical edge</span> in markets.</h1>
+    <p class="lede">I'm an Artificial Intelligence student and algorithmic trader. This site documents my academic work, my projects, and my Student Innovation Project: <strong style="color:#fff">T.A.Q. — Technical, Analytical, Quantitative.</strong></p>
+    <div class="hero-cta">
+      <a href="#sip" class="btn btn-primary">Explore SIP →</a>
+      <a href="#projects" class="btn btn-outline">View Projects</a>
+    </div>
+  </div></div>
+
+  <div class="section"><div class="wrap">
+    <h2>About</h2>
+    <p class="lead">I'm David, an Artificial Intelligence student at the University of Advancing Technology and an algorithmic trader based in Nürnberg, Germany.</p>
+    <p class="lead">I build and backtest systematic trading strategies — from Hidden Markov regime models to digital-signal-processing filters — and I trade them live on index CFDs. That live experience drives my academic work: I care less about indicators that look good in hindsight and more about methods that hold up out of sample and under real risk. T.A.Q. applies that same rigor to the one dataset most traders never analyze properly — their own journal.</p>
+  </div></div>
+
+  <div class="section"><div class="wrap">
+    <h2 style="margin-bottom:18px">Explore</h2>
+    <div class="grid grid-3">
+      <a class="card" href="#sip"><span class="kind">01 · SIP</span><h3>The Innovation</h3><p>Project description, claim, scope, and the build roadmap for T.A.Q.</p></a>
+      <a class="card" href="#boards"><span class="kind">02 · Boards</span><h3>Degree Objectives</h3><p>The six program objectives for the AI major.</p></a>
+      <a class="card" href="#projects"><span class="kind">03 · Projects</span><h3>Selected Work</h3><p>Trading systems, ML classifiers, and DSP tools.</p></a>
+    </div>
+  </div></div>
+</section>
+
+</main>
+<footer class="site-footer">© 2026 David · University of Advancing Technology · T.A.Q. SIP Portfolio</footer>
+</body></html>
