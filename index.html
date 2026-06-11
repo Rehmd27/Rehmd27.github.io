@@ -35,7 +35,7 @@ main{display:flex; flex-direction:column}
 .page{display:none; scroll-margin-top:80px}
 .page:target{display:block}
 #home{display:block; order:-1}
-#sip:target~#home,#boards:target~#home,#projects:target~#home,#contact:target~#home{display:none}
+#sip:target~#home,#brief:target~#home,#boards:target~#home,#projects:target~#home,#contact:target~#home{display:none}
 
 /* Page banner */
 .pagehead{background:var(--panel); border-bottom:1px solid var(--line)}
@@ -128,7 +128,7 @@ ul.clean li::before{content:"▸"; color:var(--amber); position:absolute; left:0
 <header class="site-header"><div class="wrap">
   <a href="#home" class="brand">David <span class="edit">Rehm</span></a>
   <nav class="nav">
-    <a href="#home">Home</a><a href="#sip">SIP</a><a href="#boards">Boards</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+    <a href="#home">Home</a><a href="#sip">SIP</a><a href="#brief">Brief</a><a href="#boards">Boards</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
   </nav>
 </div></header>
 
@@ -159,6 +159,89 @@ ul.clean li::before{content:"▸"; color:var(--amber); position:absolute; left:0
     <div class="block"><h2>Prototype / Proof of Concept</h2>
       <p>The prototype lets a trader upload a CSV, computes the full metric suite, renders an equity curve, and returns a written AI assessment with an edge verdict. It is currently in development; the planned build phases are below.</p>
     <div class="block"><h2>Source Code</h2><p>All T.A.Q. code is open and versioned on GitHub.</p>
+  </div></div>
+</section>
+
+<!-- BRIEF -->
+<section class="page" id="brief">
+  <div class="pagehead"><div class="wrap"><h1>Innovation Brief</h1><p>SIP311 · Technical, Analytical, Quantitative (T.A.Q.) · David Rehm</p></div></div>
+  <div class="section"><div class="wrap stack">
+
+    <div class="block"><h2>Technical Field</h2><p>This project involves the technical fields of Machine Learning, Data Science, Artificial Intelligence and Natural Language Processing.</p></div>
+
+    <div class="block"><h2>Background Information</h2><p>Many individuals pursue trading and investing to bolster, supplant or create a means of financial provision. However, what often goes overlooked is the difficulty in understanding why the same trade(s) and conditions have different results. Trading journals often reflect the &ldquo;What&rdquo; of what happened. They never help identify the &ldquo;Why&rdquo;. Generic information provided by trading journal programs leaves many constantly questioning. Feedback from professional traders has proven that there is a desire to have a TAQ platform that can help uncover the true edge of a strategy.</p></div>
+
+    <div class="block"><h2>Prior Art (Research)</h2>
+      <p><em>Prior Art Disclaimer:</em> Prior art exists in the realm of trade journaling services that connects a user to various brokers. The services below are most relevant to TAQ, and are acknowledged as prior art.</p>
+      <p>TraderSync is an AI-powered trading journal that connects to over 900 brokers and acts as a &ldquo;one stop shop&rdquo; for data analytics and warehousing. It is a paid service and describes &ldquo;what&rdquo; happened as opposed to using statistics and data analysis to describe the &ldquo;why&rdquo;. TAQ will provide the user information by applying statistical inference, machine learning and data analysis principles to uncover the &ldquo;why&rdquo; that many retail traders cannot receive by journaling services.</p>
+      <p style="font-size:.82rem; color:var(--muted)">TraderSync. (n.d.). <em>The trading journal that tells you how to win</em>. Retrieved May 14, 2026, from <a href="https://tradersync.com">https://tradersync.com</a></p>
+      <p>Tradervue is trading journal software that provides a deep analytical look at a trader&rsquo;s performance. It includes a social and community layer that promotes interaction amongst traders. TAQ will provide the user with Machine Learning algorithms that bring to surface patterns that reports can&rsquo;t see.</p>
+      <p style="font-size:.82rem; color:var(--muted)">Tradervue. (n.d.). <em>Tradervue</em>. Retrieved May 14, 2026, from <a href="https://www.tradervue.com">https://www.tradervue.com</a></p>
+    </div>
+
+    <div class="block"><h2>Project Description</h2><p>This project will create a website that allows users to share their trading journal into a website that will conduct a quantitative analysis and return an output file that will highlight patterns, data and other behaviors uncovered by observing the trading journal.</p></div>
+
+    <div class="block"><h2>Innovation Claim</h2><div class="claim"><span class="lbl">Innovation Claim</span><p>TAQ brings institutional-grade analytics and machine learning to the retail trader, giving every trader access to their own quantitative team.</p></div></div>
+
+    <div class="block"><h2>Usage Scenario</h2><p>An individual begins testing a new strategy. This strategy focuses on finding an entry point on or around key daily levels. Their execution occurs on the 5 minute timeframe and utilizes 3 indicators. However, their paid trading journal service only shows &ldquo;Monday is your least profitable day&rdquo;, in addition to showing typical trading journal information (time in trade, win rate, Sharpe Ratio, etc). This individual can instead use TAQ and get a plethora of information. Utilizing Machine Learning, TAQ helps this individual identify which features are most dependent on successful trades. It can help identify via a correlation heatmap which time and instrument lead to the most profitable trades. TAQ also includes various (and often overlooked) statistics that include a natural language explanation of these statistics. After looking at the assessment of their trade log from TAQ, the user now truly understands the scope of their strategy and how to make each trade as statistically probable to make money. The user will be able to get an analysis of Tilt detection, position size discipline score, drawdown analysis with simulation in addition to many more statistics that are not an option with their paid journal services.</p></div>
+
+    <div class="claim" style="border-left-color:var(--cyan); margin-top:8px"><span class="lbl" style="color:var(--cyan)">SIP Brief — Part 2</span><p style="color:var(--ink-2); font-size:.86rem">Evaluation criteria, goals and tasks, and the design prototype.</p></div>
+
+    <div class="block"><h2>Evaluation Criteria</h2><ul class="clean">
+      <li>Does the system accept and parse trade journals in CSV, Excel, HTML and MetaTrader 5 formats?</li>
+      <li>Does the system validate uploads and reject unsupported documents?</li>
+      <li>Does the system normalize journals from different platforms into a single consistent structure?</li>
+      <li>Does the system compute core performance metrics?</li>
+      <li>Does the system compute behavioral metrics?</li>
+      <li>Does the machine learning model identify trade features?</li>
+      <li>Does the language model generate a written, plain language review of the computed statistics?</li>
+      <li>Does the system provide a downloadable report to the user?</li>
+      <li>Does the system return the same results on repeated submissions?</li>
+    </ul></div>
+
+    <div class="block"><h2>Goals and Tasks Associated with the Project</h2>
+      <p style="margin-bottom:4px"><strong style="color:#fff">Objective 1 — Build the intake and parsing layer.</strong></p>
+      <ul class="clean">
+        <li>Build a drag/drop intake box on the website that takes in multiple file types</li>
+        <li>Build a Python backend that parses the file(s)</li>
+      </ul>
+      <p style="margin:16px 0 4px"><strong style="color:#fff">Objective 2 — Build the metrics and analytics engine.</strong></p>
+      <ul class="clean">
+        <li>Implement the performance metrics</li>
+        <li>Implement the behavioral metrics</li>
+        <li>Generate equity curve and drawdown simulations</li>
+        <li>Create correlation and feature analyses</li>
+      </ul>
+      <p style="margin:16px 0 4px"><strong style="color:#fff">Objective 3 — Develop the Machine Learning model.</strong></p>
+      <ul class="clean">
+        <li>Engineer features from journal</li>
+        <li>Train and validate a classifier</li>
+      </ul>
+      <p style="margin:16px 0 4px"><strong style="color:#fff">Objective 4 — Integrate the natural language layer.</strong></p>
+      <ul class="clean">
+        <li>Create localized language model (LLM)</li>
+        <li>Design process that converts statistics into written assessment</li>
+        <li>Generate assessment</li>
+        <li>Create visualizations to accompany assessment</li>
+      </ul>
+      <p style="margin:16px 0 4px"><strong style="color:#fff">Objective 5 — Deploy the prototype and integrate with website.</strong></p>
+      <ul class="clean">
+        <li>Host Python backend</li>
+      </ul>
+      <div class="note" style="margin-top:18px"><span class="lbl">Note</span><p>This section must be revised prior to SIP408 to describe tasks as they actually occurred.</p></div>
+    </div>
+
+    <div class="block"><h2>Description of Design Prototype</h2>
+      <p>The prototype for this is a web application made using GitHub. The front end (what the user sees) is the HTML page that allows a drag and drop of submission files. Once uploaded, the file then gets sent and parsed to the back end which is a Python file. This Python file will use various libraries that will be able to conduct the data science and machine learning functions. The file, after getting parsed and analyzed, will then be returned to the user as a downloadable report.</p>
+      <div class="note"><span class="lbl">Note</span><p>This section will be revised prior to SIP408 to describe the design prototype in its final form.</p></div>
+    </div>
+
+    <div class="claim" style="border-left-color:var(--cyan); margin-top:8px"><span class="lbl" style="color:var(--cyan)">SIP Brief — Part 3</span><p style="color:var(--ink-2); font-size:.86rem">Completed in later phases of the project.</p></div>
+
+    <div class="block"><h2>Evaluation Plan</h2><div class="note"><span class="lbl">Pending</span><p>To be completed in SIP409.</p></div></div>
+    <div class="block"><h2>Project Completion Assessment</h2><div class="note"><span class="lbl">Pending</span><p>To be completed in SIP409.</p></div></div>
+    <div class="block"><h2>Appendices</h2><div class="note"><span class="lbl">Pending</span><p>To be completed in SIP408.</p></div></div>
+
   </div></div>
 </section>
 
